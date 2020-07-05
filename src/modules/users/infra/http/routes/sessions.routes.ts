@@ -7,6 +7,7 @@ const sessionsRouter = Router();
 
 sessionsRouter.post('/', async (request, response) => {
   const { email, password } = request.body;
+  console.log('Recebeu os dados do body');
 
   const authenticateUser = container.resolve(AuthenticateUSerService);
 
@@ -14,6 +15,7 @@ sessionsRouter.post('/', async (request, response) => {
     email,
     password,
   });
+  console.log('Passou no autenticate');
 
   delete user.password;
 
