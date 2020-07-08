@@ -4,9 +4,10 @@ import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashprovider';
 
 import CreateUserService from './CreateUserService';
+import AuthenticateUserService from './AuthenticateUserService';
 
-describe('CreateUser', () => {
-  it('should be able to create a new user', async () => {
+describe('AuthenticateUser', () => {
+  it('should be able to authenticate', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
 
@@ -14,21 +15,7 @@ describe('CreateUser', () => {
       fakeUsersRepository,
       fakeHashProvider
     );
-
-    const user = await createUser.execute({
-      name: 'John Doe',
-      email: 'johndoe@exemple.com',
-      password: '123456',
-    });
-
-    expect(user).toHaveProperty('id');
-  });
-
-  it('should not be able to create a new user with the same email', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const createUser = new CreateUserService(
+    const authenticateUser = new AuthenticateUserService(
       fakeUsersRepository,
       fakeHashProvider
     );
@@ -39,9 +26,24 @@ describe('CreateUser', () => {
       password: '123456',
     });
 
+    const response = await authenticateUser.execute({
+      email: 'johndoe@exemple.com',
+      password: '123456',
+    });
+
+    expect(response).toHaveProperty('token');
+  });
+
+  it('should not be able to authenticate with nin existing user', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
+
+    const authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider
+    );
     expect(
-      createUser.execute({
-        name: 'John Doe',
+      authenticateUser.execute({
         email: 'johndoe@exemple.com',
         password: '123456',
       })
