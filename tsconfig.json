@@ -8,7 +8,7 @@
 
     "strict": true,
 
-     "strictPropertyInitialization": false,
+    "strictPropertyInitialization": false,
 
     "baseUrl": "./src",
     "paths": {
@@ -16,7 +16,7 @@
       "@config/*":["config/*"],
       "@shared/*":["shared/*"]
     },
-
+    "esModuleInterop": true,
 
      "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
