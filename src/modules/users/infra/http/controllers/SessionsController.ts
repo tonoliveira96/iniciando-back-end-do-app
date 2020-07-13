@@ -6,7 +6,6 @@ import AuthenticateUSerService from '@modules/users/services/AuthenticateUserSer
 export default class SessiosController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
-    console.log('Recebeu os dados do body');
 
     const authenticateUser = container.resolve(AuthenticateUSerService);
 
@@ -14,7 +13,6 @@ export default class SessiosController {
       email,
       password,
     });
-    console.log('Passou no autenticate');
 
     delete user.password;
 
