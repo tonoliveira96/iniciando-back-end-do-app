@@ -25,6 +25,7 @@ class UserTokensRepository implements IUserTokensRepository {
     });
 
     this.ormRepository.save(userToken);
+    console.log('User token: ', userToken);
 
     return userToken;
   }
