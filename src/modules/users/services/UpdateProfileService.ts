@@ -22,7 +22,7 @@ class UpdateProfile {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('HashProvide')
+    @inject('HashProvider')
     private hashProvider: IHashProvider
   ) {}
 
