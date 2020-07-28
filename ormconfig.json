@@ -27,7 +27,7 @@
   "database": "gobarber",
   "useUnifiedTopology": true,
   "entities":[
-    "./src/modules/**/infra/typeorm/achemas/*.ts"
+    "./src/modules/**/infra/typeorm/schemas/*.ts"
   ]
 
 }
